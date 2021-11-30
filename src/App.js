@@ -1,73 +1,36 @@
-import './App.css';
-import axios from 'axios'
-import React, { Component } from 'react';
-import number from "easy-number-formatter";
+import React from 'react';
+import Home from './Home';
+import CountriesList from './CountriesList';
+import { BrowserRouter, Link, Routes, Route, useParams} from 'react-router-dom'
+import CountrySingle from './CountrySingle';
 
+const RouteWrapper = (props) => {
+    const params = useParams();
 
-class App extends Component {
-  state = {
-    data: [],
-    searchInput: "",
-    isLoading: true,
-  };
-
-componentDidMount () {
-  axios.get("https://restcountries.com/v2/all?fields=name,capital,flags,languages,population,currencies")
-  .then((res) => {
-    this.setState({data: res.data, isLoading: false});
-    console.log(this.state.data);
-  });
-}
-
-searchHandler = (e) => {
-  this.setState({
-    searchInput: e.target.value,
-  });
+    return <CountrySingle params={params} {...props} />;
 };
 
-  render() {
-    if (this.state.isLoading) {
-      return <div className="loading"><p>Wait, I am loading</p><div class="loader"></div></div>
-    }
 
-    if (!this.state.isLoading) {
+const App = () => {
     return (
-      <div className="countries">
-        <input 
-        type="text" 
-        name="search" 
-        onChange={this.searchHandler.bind(this)}
-        />
-       {this.state.data
-       .filter((c) => {
-         return c.name.toLowerCase().includes(this.state.searchInput.toLowerCase());
-       }).map((c) => (
-       <div className="country" key={c.name}>
-         <h2>{c.name}</h2> <h3>{c.capital}</h3>
-      <img src={c.flags.png} alt={c.name} />
-      <div className="cardContent">
-        <p>
-          Language(s):
-          {c.languages.map((lang, i)=> (
-            <span key={i}>{lang.name}</span>
-          ))}
-        </p>
-        <p>
-          Currencies:
-          {c.currencies.map((mon, i) => (
-            <span key={i}>
-              {mon.name} - {mon.symbol}
-              </span>
-          ))}
-        </p>
-        <p>Population:
-          <span className="low">{number.formatNumber(c.population)}</span></p>
-        </div>
-      </div>
-       ))}
-       </div>
-      );
-  }
-}}
+        <BrowserRouter>
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/countries">Countries</Link>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route index element={<Home />} />
+                <Route path="/countries" element={<CountriesList />} />
+                <Route path="/countries/:name" element={<RouteWrapper />} />
+            </Routes>
+            </BrowserRouter>
+    );
+};
 
 export default App;

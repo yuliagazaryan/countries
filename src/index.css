@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(images/bg.jpg);
 }
 
 .countries {
@@ -44,6 +45,11 @@ img {
   padding: 0 1rem 1rem;
 }
 
+.cardContent {
+  overflow: scroll;
+  padding-left: 1rem;
+}
+
 .cardContent span {
   font-weight: 700;
   margin-right: 1rem;
@@ -72,30 +78,11 @@ img {
 @media (min-width: 1199.98px) {
   .countries {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, 332px);
     grid-gap: 1rem;
   }
 }
 
 .loading {
   text-align: center;
-}
-
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
