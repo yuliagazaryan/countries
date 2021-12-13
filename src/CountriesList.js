@@ -10,6 +10,7 @@ class CountriesList extends Component {
         searchInput: "",
         isLoading: true,
       };
+      
       componentDidMount () {
         axios.get("https://restcountries.com/v2/all?fields=name,capital,flags,languages,population,currencies")
         .then((res) => {
@@ -31,19 +32,21 @@ class CountriesList extends Component {
       if (!this.state.isLoading) {
 
         return (
-    <div className="countries">
-        <Outlet />
+<div>
         <input 
         type="text" 
         name="search" 
         onChange={this.searchHandler.bind(this)}
         />
+    <div className="countries">
+        <Outlet />
         {this.state.data
        .filter((c) => {
          return c.name.toLowerCase().includes(this.state.searchInput.toLowerCase());
        }).map((country) => (
         <CountryCard {...country} key={country.name} />
        ))}
+            </div>
             </div>
         );
     }

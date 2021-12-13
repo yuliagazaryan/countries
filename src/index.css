@@ -10,6 +10,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: url(images/bg.jpg);
+  color: white;
+  text-align: center;
+}
+
+nav {
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav li:first-child a {
+  padding-right: 50px;
+}
+
+nav li a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+nav li a:hover {
+  color: rgb(211, 204, 204);
 }
 
 .countries {
@@ -21,6 +46,7 @@ body {
   box-shadow: 0 0 5px rgb(92, 92, 92);
   position: relative;
   border-radius: 5px;
+  background-color: white;
 }
 
 .country h3,
@@ -85,4 +111,25 @@ img {
 
 .loading {
   text-align: center;
+}
+
+.home-page h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-top: 200px;
+}
+
+.countries a {
+  text-decoration: none;
+  color: black;
+}
+
+input {
+  width: 250px;
+  height: 25px;
+  margin-bottom: 50px;
+}
+
+.weather-page {
+  padding-top: 250px;
 }

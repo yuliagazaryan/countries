@@ -52,7 +52,7 @@ class CountrySingle extends Component {
 
     if (!this.state.isLoading) {
       return (
-        <div>
+        <div className="weather-page">
           Right now it is {this.state.weather.main.temp} degrees in{" "}
           {this.state.country.capital}
           <img
