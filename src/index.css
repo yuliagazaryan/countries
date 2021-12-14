@@ -132,4 +132,11 @@ input {
 
 .weather-page {
   padding-top: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-page img {
+  position: unset;
 }
